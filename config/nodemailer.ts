@@ -1,7 +1,8 @@
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 dotenv.config();
-export const transporter = nodemailer.createTransport({
+export const transporter:nodemailer.Transporter<SMTPTransport.SentMessageInfo> = nodemailer.createTransport({
     service:"gmail",
     auth:{
         user:process.env.SENDER,
