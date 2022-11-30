@@ -27,7 +27,7 @@ const Uploader = (req: Request, res: Response) => {
   });
 };
 const getImageHandler = async (req: Request, res: Response):Promise<void> => {
-  const key = req.params.key;
+  const key:string = req.params.key;
   const params = {
     Key: key,
     Bucket: process.env.AWS_BUCKET_NAME!,
