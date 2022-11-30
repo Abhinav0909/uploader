@@ -2,7 +2,7 @@ import {Request,Response,Router} from 'express';
 import Joi from 'joi';
 import {signUpController,logInController} from './controller'
 const authRouter = Router();
-const SignUpHandler = async(req:Request,res:Response) =>{
+const SignUpHandler = async(req:Request,res:Response):Promise<void> =>{
     try{
         const schema = Joi.object({
             email:Joi.string().email().required(),
@@ -40,7 +40,7 @@ const SignUpHandler = async(req:Request,res:Response) =>{
 
 }
     }
-    export const LogInHandler = async(req:Request,res:Response) =>{
+    export const LogInHandler = async(req:Request,res:Response):Promise<void> =>{
         try{
             const schema = Joi.object({
                 email:Joi.string().required(),
