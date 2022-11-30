@@ -1,7 +1,7 @@
 import {Request,Response,Router} from 'express';
 import Joi from 'joi';
 import {signUpController,logInController} from './controller'
-const authRouter = Router();
+const authRouter:Router = Router();
 const SignUpHandler = async(req:Request,res:Response):Promise<void> =>{
     try{
         const schema = Joi.object({

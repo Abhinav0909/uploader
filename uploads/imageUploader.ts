@@ -4,10 +4,10 @@ import dotenv from "dotenv";
 import { v4 as uuidv4 } from "uuid";
 import { Router, Request, Response } from "express";
 dotenv.config();
-const uploadHandler = Router();
+const uploadHandler:Router = Router();
 const s3:AWS.S3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ID,
-  secretAccessKey: process.env.AWS_SECRET,
+  accessKeyId: process.env.AWS_ID!,
+  secretAccessKey: process.env.AWS_SECRET!,
 });
 const storage:multer.StorageEngine = multer.memoryStorage();
 const upload = multer({ storage: storage }).single("image");
@@ -17,7 +17,7 @@ const Uploader = (req: Request, res: Response) => {
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME!,
     Key: `${uuidv4()}.${fileType}`,
-    Body: req.file?.buffer,
+    Body: req.file!.buffer,
   };
   s3.upload(params, (error: any, data: any) => {
     if (error) {
@@ -26,7 +26,7 @@ const Uploader = (req: Request, res: Response) => {
     res.status(200).send(data);
   });
 };
-const getImageHandler = async (req: Request, res: Response) => {
+const getImageHandler = async (req: Request, res: Response):Promise<void> => {
   const key = req.params.key;
   const params = {
     Key: key,
