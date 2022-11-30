@@ -17,9 +17,6 @@ mongoose.connect(`${process.env.MONGODB_URI}`,{
     else
     console.log("Db connected successfully");
 })
-app.get('/',(req:Request,res:Response)=>{
-    res.send('Learning');
-});
 app.use(authRouter);
 app.use(uploadHandler);
 app.listen(port,()=>{
