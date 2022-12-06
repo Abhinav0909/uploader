@@ -9,7 +9,9 @@ const app:Express = express();
 const port:number = 2000  || process.env.PORT ;
 const limit:RateLimitRequestHandler = rateLimit({
     windowMs: 15 * 60 * 1000,
-	max: 6,
+	max: 2,
+	message:"You have requested our Api many times.Wait! a moment",
+	headers:true
 })
 app.use(limit);
 app.use(express.json());
