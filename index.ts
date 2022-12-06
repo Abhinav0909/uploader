@@ -8,7 +8,7 @@ dotenv.config();
 const app:Express = express();
 const port:number = 2000  || process.env.PORT ;
 const limit:RateLimitRequestHandler = rateLimit({
-    windowMs: 15 * 60 * 1000,
+    	windowMs: 15 * 60 * 1000,
 	max: 2,
 	message:"You have requested our Api many times.Wait! a moment",
 	headers:true
