@@ -3,9 +3,15 @@ import mongoose,{ConnectOptions} from 'mongoose';
 import dotenv from 'dotenv';
 import authRouter from './auth/router';
 import uploadHandler from './uploads/imageUploader';
+import rateLimit from 'express-rate-limit';
 dotenv.config();
 const app:Express = express();
 const port:number = 2000  || process.env.PORT ;
+const limit = rateLimit({
+    windowMs: 15 * 60 * 1000,
+	max: 6,
+})
+app.use(limit);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 mongoose.connect(`${process.env.MONGODB_URI}`,{
