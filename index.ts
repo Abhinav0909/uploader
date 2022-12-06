@@ -3,11 +3,11 @@ import mongoose,{ConnectOptions} from 'mongoose';
 import dotenv from 'dotenv';
 import authRouter from './auth/router';
 import uploadHandler from './uploads/imageUploader';
-import rateLimit from 'express-rate-limit';
+import rateLimit, { RateLimitRequestHandler } from 'express-rate-limit';
 dotenv.config();
 const app:Express = express();
 const port:number = 2000  || process.env.PORT ;
-const limit = rateLimit({
+const limit:RateLimitRequestHandler = rateLimit({
     windowMs: 15 * 60 * 1000,
 	max: 6,
 })
